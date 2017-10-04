@@ -1,0 +1,23 @@
+// fonction qui charge en mémoire l'arborescence de fichiers/repértoires.
+ void load (char *fichier)
+{
+	FILE *f;
+	char l[MAX];
+	char *p;
+	f= fopen(fichier,"r"); //ouvre le fichier en lecture
+	if (f == NULL)
+	{
+		perror (fichier);
+		exit (1);
+	}
+	while (fgets(l, MAX-1, f) != NULL)
+	{
+		//printf("%s\n",l);
+		p = strchr(l,'#');
+		if ( p!= NULL )
+		*p='\0';
+		trim(l);
+		printf("%s\n",l);					
+	}
+	fclose(f);
+}
